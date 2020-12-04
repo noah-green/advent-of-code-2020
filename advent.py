@@ -33,11 +33,11 @@ def advent():
     for day in days:
         mod = importlib.import_module(day)
         with open(f'input/day{days.index(day) + 1}.txt') as f:
-            input = f.read()
+            puzzleInput = f.read()
         with contexttimer.Timer() as part1Timer:
-            part1Answer = mod.solvePart1(input)
+            part1Answer = mod.solvePart1(puzzleInput)
         with contexttimer.Timer() as part2Timer:
-            part2Answer = mod.solvePart2(input)
+            part2Answer = mod.solvePart2(puzzleInput)
         print('---------------------------------------------------------------------------------')
         print(f'Day {days.index(day) + 1}: {mod.puzzleName}')
         print('---------------------------------------------------------------------------------')

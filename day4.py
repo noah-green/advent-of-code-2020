@@ -10,16 +10,16 @@ eyeColors = {
     'oth'
 }
 
-def isValidHeight(input):
-    if input[-2:] == 'cm' and input[:-2].isdigit():
-        return int(input[:-2]) in range(150, 194)
-    elif input[-2:] == 'in' and input[:-2].isdigit():
-        return int(input[:-2]) in range(59, 77)
+def isValidHeight(puzzleInput):
+    if puzzleInput[-2:] == 'cm' and puzzleInput[:-2].isdigit():
+        return int(puzzleInput[:-2]) in range(150, 194)
+    elif puzzleInput[-2:] == 'in' and puzzleInput[:-2].isdigit():
+        return int(puzzleInput[:-2]) in range(59, 77)
     else:
         return False
 
-def solvePart1(input):
-    passports = [{j.split(':')[0] : j.split(':')[1] for j in i.split()} for i in input.split('\n\n')]
+def solvePart1(puzzleInput):
+    passports = [{j.split(':')[0] : j.split(':')[1] for j in i.split()} for i in puzzleInput.split('\n\n')]
     def valid(passport):
         return (
             'byr' in passport and
@@ -33,8 +33,8 @@ def solvePart1(input):
     return sum(1 for passport in passports if valid(passport))
 
 
-def solvePart2(input):
-    passports = [{j.split(':')[0] : j.split(':')[1] for j in i.split()} for i in input.split('\n\n')]
+def solvePart2(puzzleInput):
+    passports = [{j.split(':')[0] : j.split(':')[1] for j in i.split()} for i in puzzleInput.split('\n\n')]
     def valid(passport):
         return (
             'byr' in passport and int(passport['byr']) in range(1920, 2003) and
