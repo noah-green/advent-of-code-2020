@@ -1,5 +1,6 @@
 puzzleName = 'Tobaggan Trajectory'
 
+
 def checkTrees(puzzleInput, down, over):
     x = 0
     trees = 0

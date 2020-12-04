@@ -1,5 +1,6 @@
 puzzleName = 'Password Philosophy'
 
+
 def solvePart1(puzzleInput):
     valid = 0
     for line in puzzleInput.splitlines():
@@ -9,6 +10,7 @@ def solvePart1(puzzleInput):
         allowed = range(int(allowed[0]), int(allowed[1]) + 1)
         valid += 1 if sum(1 for l in password if l == letter) in allowed else 0
     return valid
+
 
 def solvePart2(puzzleInput):
     valid = 0
