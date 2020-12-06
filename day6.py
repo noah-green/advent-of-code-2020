@@ -1,8 +1,10 @@
-puzzlename = ''
+puzzleName = 'Custom Customs'
 
-def solvePart1(input):
-    pass
+alpha = 'abcdefghijklmnopqrstuvwxyz'
+
+def solvePart1(puzzleInput):
+    return sum(len(set(''.join(group.split()))) for group in puzzleInput.split('\n\n'))
 
 
-def solvePart2(input):
-    pass
+def solvePart2(puzzleInput):
+    return sum(len(set(alpha).intersection(*group.split())) for group in puzzleInput.split('\n\n'))
