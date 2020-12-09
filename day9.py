@@ -1,8 +1,8 @@
-puzzlename = ''
+puzzle_name = 'Encoding Error'
 
-def solvePart1(input):
+def solution1(input):
     pass
 
 
-def solvePart2(input):
+def solution2(input):
     pass

@@ -1,6 +1,6 @@
-puzzleName = 'Passport Processing'
+puzzle_name = 'Passport Processing'
 
-eyeColors = {
+eye_colors = {
     'amb',
     'blu',
     'brn',
@@ -10,17 +10,17 @@ eyeColors = {
     'oth'
 }
 
-def isValidHeight(puzzleInput):
-    if puzzleInput[-2:] == 'cm' and puzzleInput[:-2].isdigit():
-        return int(puzzleInput[:-2]) in range(150, 194)
-    elif puzzleInput[-2:] == 'in' and puzzleInput[:-2].isdigit():
-        return int(puzzleInput[:-2]) in range(59, 77)
+def is_valid_height(puzzle_input):
+    if puzzle_input[-2:] == 'cm' and puzzle_input[:-2].isdigit():
+        return int(puzzle_input[:-2]) in range(150, 194)
+    elif puzzle_input[-2:] == 'in' and puzzle_input[:-2].isdigit():
+        return int(puzzle_input[:-2]) in range(59, 77)
     else:
         return False
 
-def solvePart1(puzzleInput):
-    passports = [{j.split(':')[0] : j.split(':')[1] for j in i.split()} for i in puzzleInput.split('\n\n')]
-    def valid(passport):
+def solution1(puzzle_input):
+    passports = [{j.split(':')[0] : j.split(':')[1] for j in i.split()} for i in puzzle_input.split('\n\n')]
+    def is_valid(passport):
         return (
             'byr' in passport and
             'iyr' in passport and
@@ -30,19 +30,19 @@ def solvePart1(puzzleInput):
             'ecl' in passport and
             'pid' in passport
         )
-    return sum(1 for passport in passports if valid(passport))
+    return sum(1 for passport in passports if is_valid(passport))
 
 
-def solvePart2(puzzleInput):
-    passports = [{j.split(':')[0] : j.split(':')[1] for j in i.split()} for i in puzzleInput.split('\n\n')]
-    def valid(passport):
+def solution2(puzzle_input):
+    passports = [{j.split(':')[0] : j.split(':')[1] for j in i.split()} for i in puzzle_input.split('\n\n')]
+    def is_valid(passport):
         return (
             'byr' in passport and int(passport['byr']) in range(1920, 2003) and
             'iyr' in passport and int(passport['iyr']) in range(2010, 2021) and
             'eyr' in passport and int(passport['eyr']) in range(2020, 2031) and
-            'hgt' in passport and isValidHeight(passport['hgt']) and
+            'hgt' in passport and is_valid_height(passport['hgt']) and
             'hcl' in passport and passport['hcl'][0] == '#' and all(i in 'abcdef1234567890' for i in passport['hcl'][1:]) and
-            'ecl' in passport and passport['ecl'] in eyeColors and
+            'ecl' in passport and passport['ecl'] in eye_colors and
             'pid' in passport and len(passport['pid']) == 9 and passport['pid'].isnumeric()
         )
-    return sum(1 for passport in passports if valid(passport))
+    return sum(1 for passport in passports if is_valid(passport))

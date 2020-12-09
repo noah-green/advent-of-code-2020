@@ -1,24 +1,24 @@
-puzzleName = 'Tobaggan Trajectory'
+puzzle_name = 'Tobaggan Trajectory'
 
 
-def checkTrees(puzzleInput, down, over):
+def check_trees(puzzle_input, down, over):
     x = 0
     trees = 0
-    for line in puzzleInput.split()[::down]:
+    for line in puzzle_input.split()[::down]:
         trees += 1 if line[x] == '#' else 0
         x = (x + over) % (len(line))
     return trees
 
 
-def solvePart1(puzzleInput):
-    return checkTrees(puzzleInput, 1, 3)
+def solution1(puzzle_input):
+    return check_trees(puzzle_input, 1, 3)
 
 
-def solvePart2(puzzleInput):
+def solution2(puzzle_input):
     return (
-        checkTrees(puzzleInput, 1, 1) *
-        checkTrees(puzzleInput, 1, 3) *
-        checkTrees(puzzleInput, 1, 5) *
-        checkTrees(puzzleInput, 1, 7) *
-        checkTrees(puzzleInput, 2, 1)
+        check_trees(puzzle_input, 1, 1) *
+        check_trees(puzzle_input, 1, 3) *
+        check_trees(puzzle_input, 1, 5) *
+        check_trees(puzzle_input, 1, 7) *
+        check_trees(puzzle_input, 2, 1)
     )

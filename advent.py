@@ -2,16 +2,16 @@ import contexttimer
 import importlib
 
 
-days = [
+advent = [
     'day1',  #
     'day2',  #     ___       __                 __
     'day3',  #    /   | ____/ /   _____  ____  / /_
     'day4',  #   / /| |/ __  / | / / _ \/ __ \/ __/
     'day5',  #  / ___ / /_/ /| |/ /  __/ / / / /_
     'day6',  # /_/  |_\__,_/ |___/\___/_/ /_/\__/
-#   'day7',  #
-#   'day8',  #          ____
-#   'day9',  #   ____  / __/
+    'day7',  #
+    'day8',  #          ____
+    'day9',  #   ____  / __/
 #   'day10', #  / __ \/ /_
 #   'day11', # / /_/ / __/
 #   'day12', # \____/_/
@@ -30,25 +30,23 @@ days = [
 #   'day25', #
 ]
 
-
-def advent():
-    for day in days:
-        mod = importlib.import_module(day)
-        with open(f'input/day{days.index(day) + 1}.txt') as f:
-            puzzleInput = f.read()
-        with contexttimer.Timer() as part1Timer:
-            part1Answer = mod.solvePart1(puzzleInput)
-        with contexttimer.Timer() as part2Timer:
-            part2Answer = mod.solvePart2(puzzleInput)
-
-        print(
-        f"""
-Day {days.index(day) + 1}: {mod.puzzleName}
+template = """
+Day {day}: {puzzle_name}
 -----------------------------------------------------------
-Part 1: {part1Answer}, calculated in {part1Timer.elapsed} seconds
-Part 2: {part2Answer}, calculated in {part2Timer.elapsed} seconds
-        """
-        )
+Part 1: {solution1}, calculated in {time1} seconds
+Part 2: {solution2}, calculated in {time2} seconds
+"""
 
 if __name__ == '__main__':
-    advent()
+    for day in range(1, len(advent) + 1):
+        puzzle = importlib.import_module(advent[day - 1])
+        with open(f'input/day{day}.txt') as infile, contexttimer.Timer() as timer1, contexttimer.Timer() as timer2:
+            puzzle_input = infile.read()
+            print(template.format(
+                day = day,
+                puzzle_name= puzzle.puzzle_name,
+                solution1 = puzzle.solution1(puzzle_input),
+                time1= timer1.elapsed,
+                solution2 = puzzle.solution2(puzzle_input),
+                time2 = timer2.elapsed
+            ))

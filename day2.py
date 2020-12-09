@@ -1,9 +1,9 @@
-puzzleName = 'Password Philosophy'
+puzzle_name = 'Password Philosophy'
 
 
-def solvePart1(puzzleInput):
+def solution1(puzzle_input):
     valid = 0
-    for line in puzzleInput.splitlines():
+    for line in puzzle_input.splitlines():
         policy, password = line.split(':')
         allowed, letter =  policy.split()
         allowed = allowed.split('-')
@@ -12,9 +12,9 @@ def solvePart1(puzzleInput):
     return valid
 
 
-def solvePart2(puzzleInput):
+def solution2(puzzle_input):
     valid = 0
-    for line in puzzleInput.splitlines():
+    for line in puzzle_input.splitlines():
         policy, password = line.split(':')
         password = password.strip()
         positions, letter =  policy.split()

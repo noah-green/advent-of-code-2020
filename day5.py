@@ -1,8 +1,8 @@
-puzzleName = 'Binary Boarding'
+puzzle_name = 'Binary Boarding'
 
-def calcSeat(boardingPass):
-    rowID = boardingPass[:7]
-    colID = boardingPass[7:]
+def seat_ID(boarding_pass):
+    rowID = boarding_pass[:7]
+    colID = boarding_pass[7:]
     row = range(128)
     col = range(8)
     for i in rowID:
@@ -17,26 +17,18 @@ def calcSeat(boardingPass):
         if i == 'R':
             col = col[len(col)//2:]
     col = col[0]
-    return (row, col)
-
-def calcSeatID(seat):
-    return seat[0] * 8 + seat[1]
-
-def getSeatfromID(seatID):
-    return (seatID//8, seatID%8)
+    return row*8 + col
 
 
-def solvePart1(puzzleInput):
-    passes = puzzleInput.split()
-    seats =  [calcSeat(boardingPass) for boardingPass in passes]
-    return max(seat[0] * 8 + seat[1] for seat in  seats)
+def solution1(puzzle_input):
+    return max(seat_ID(boarding_pass) for boarding_pass in puzzle_input.splitlines())
 
 
-def solvePart2(puzzleInput):
-    seatsIDs = [calcSeatID(calcSeat(boardingPass)) for boardingPass in puzzleInput.split()]
-    seatsIDs.sort()
-    prevSeatID = seatsIDs[0]
-    for i in seatsIDs:
-        if i > prevSeatID + 1:
-            return prevSeatID + 1
-        prevSeatID = i
+def solution2(puzzle_input):
+    seat_IDs = [seat_ID(boarding_pass) for boarding_pass in puzzle_input.splitlines()]
+    seat_IDs.sort()
+    prev = seat_IDs[0]
+    for curr in seat_IDs:
+        if curr > prev + 1:
+            return prev + 1
+        prev = curr

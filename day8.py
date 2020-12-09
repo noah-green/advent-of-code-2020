@@ -1,8 +1,8 @@
-puzzlename = ''
+puzzle_name = 'Handheld Halting'
 
-def solvePart1(input):
+def solution1(puzzle_input):
     pass
 
 
-def solvePart2(input):
+def solution2(puzzle_input):
     pass
